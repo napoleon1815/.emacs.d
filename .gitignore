@@ -1,0 +1,13 @@
+#only resver 4 files
+#1. .gitignore
+#2. elpa/
+#3. init.el
+#4. my-init/
+
+*~
+auto-save-list/
+snippets
+abbrev_defs
+bookmarks
+gtd.org
+recentf

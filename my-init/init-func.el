@@ -3,7 +3,7 @@
 (defun open-my-init-file()
   (interactive)
   (find-file "~/.emacs.d/init.el"))
-(open-my-init-file)
+;(open-my-init-file)
 
 ;; <M-x recentf-mode>
 ;; require $FILENAME means load this file 

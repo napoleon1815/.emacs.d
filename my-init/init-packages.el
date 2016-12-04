@@ -64,6 +64,10 @@
 		      ;;powerline;;not good for useage
 		      ;; which key
 		      which-key
+		      ;; fast move
+		      avy
+		      ;; c/c++ ide
+		      xcscope
 		      ) "A list of packages to ensure are installed at launch.")
 
 ;; check whether packages-list all installed
@@ -81,6 +85,7 @@
     (when (not (package-installed-p p))
       (package-install p))))
 
+;; <M-x package-list-packages> -> <d> -> <x>
  '(package-selected-packages
    (quote
     (company monokai-theme hungry-delete swiper counsel smartparens)))
@@ -181,6 +186,8 @@
 ;; <M-x Customize-group evil-leader> -> Evil Leader: SPC
 (global-evil-leader-mode)
 (evil-leader/set-key
+ "jp" 'avy-goto-char-2-above
+ "j;" 'avy-goto-char-2-below
  "ff" 'find-file
  "fr" 'recentf-open-files
  "bb" 'switch-to-buffer
@@ -204,6 +211,16 @@
 (add-hook 'occur-mode-hook
 	  (lambda ()
 	    (evil-add-hjkl-bindings occur-mode-map 'emacs
+	      (kbd "/") 'evil-search-forward
+	      (kbd "n") 'evil-search-next
+	      (kbd "N") 'evil-search-previous
+	      (kbd "C-d") 'evil-search-down
+	      (kbd "C-u") 'evil-search-up
+	      )
+	    ))
+(add-hook 'recentf-mode-hook
+	  (lambda ()
+	    (evil-add-hjkl-bindings recentf-mode-map 'emacs
 	      (kbd "/") 'evil-search-forward
 	      (kbd "n") 'evil-search-next
 	      (kbd "N") 'evil-search-previous

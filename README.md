@@ -28,57 +28,78 @@ msysgit(https://github.com/git-for-windows/git/releases)
 :run git bash, tips: use cursor to max window & <Ctrl - +/->
 
 :for mac
-$ brew install git //使用 Homebrew 方式安装，Git 被安装在 /usr/local/Cellar/git/<version>/ 中，可执行程序自动在 /usr/local/bin 目录下创建符号连接，可以直接在终端程序中访问。
-$ brew list //通过 brew list 命令可以查看安装的开源软件包。
-$ brew list git //也可以查看某个软件包安装的详细路径和安装内容。
+:使用 Homebrew 方式安装，Git 被安装在 /usr/local/Cellar/git/<version>/ 中，可执行程序自动在 /usr/local/bin 目录下创建符号连接，可以直接在终端程序中访问。
+    $ brew install git 
+:通过 brew list 命令可以查看安装的开源软件包。
+    $ brew list 
+:也可以查看某个软件包安装的详细路径和安装内容。
+    $ brew list git 
 
 <2> git local usage
-git init //enter repo folder
-git status //check status & untracked files
-git diff //diff untracked files
-git diif --cache //diff stage files
-git checkout -- . //roll back untracked files
-git add <file/./-A> //add change to stage
-git commit -m "提交信息" //commit stage content to repo
-git log //check git commit log
-git reset --hard <前7位commit id> //roll back tracked files to one commit in local repo, untracked files still exist
-git reflog //get tracked files to latest commit in local repo, untracked files still exist
-git clean -xf //delete all untracked files including .gitignore
+:enter repo folder
+    $git init 
+:check status & untracked files
+    $git status 
+:diff untracked files
+    $git diff 
+:diff stage files
+    $git diff --cached 
+:roll back untracked files
+    $git checkout -- . 
+:add change to stage
+    $git add <file/./-A> 
+:commit stage content to repo
+    $git commit -m "MESSAGE" 
+    $git log //check git commit log
+:roll back tracked files to one commit in local repo, untracked files still exist
+    $git reset --hard <commit id>
+    $git reflog //get tracked files to latest commit in local repo, untracked files still exist
+    $git clean -xf //delete all untracked files including .gitignore
 
 <3> add .gitignore in .git folder after git init
-touch  .gitignore
-file .gitignore format:
-A：# for comment   
-B：use shell regular expression, such as *.[oa] or *~  
-C：suffix "/" stand for directory 
-D：prefix "!" stand for negation
+    $touch  .gitignore
+    $file .gitignore format:
+        A：# for comment   
+        B：use shell regular expression, such as *.[oa] or *~  
+        C：suffix "/" stand for directory 
+        D：prefix "!" stand for negation
 
 <4> github usage
-:sign up
-https://github.com/
+:sign up in https://github.com/
 
 :set git for first usage
-git config --global user.name "<name>"
-git config --global user.email "<email>"
+    $git config --global user.name "<name>"
+    $git config --global user.email "<email>"
 :or modify .gitconfig file,add <email> & <name> directly
-ssh-keygen -t rsa -C "<email>"
+    $ssh-keygen -t rsa -C "<email>"
 :copy ~/.ssh/id_rsa.pub content to ssh key to github web "Settings" -> "SSH and GPG keys"
 :https://github.com/ -> Settings -> SSH and GPG keys
-ssh -T git@github.com //check sucess or not
+    $ssh -T git@github.com //check sucess or not
 
 :create repo
-:https://github.com/ -> New repositories(create own repo for version control)
+    :https://github.com/ -> New repositories(create own repo for version control)
 
 :copy repo address
 :https://github.com/ -> repo -> Quick setup -> SSH(choose copy to clipboard)
-git remote add origin <copy clone address, use SSH format like "git@github.com">
-git push -u origin master
+    $git remote add origin <copy clone address, use SSH format like "git@github.com">
+    $git push -u origin master
 
 <5> upload to github
-:after git commit, then
-git push
+    :after git commit, then run git push cmd
+    $git push
+    ( may be ? $git push -u origin master )
 
 <6> download from github <NOTE: other device still need step :set git for first usage>
-:clone repo address
-git clone <ssh address> //do not need git init
-git clone "git@github.com:napoleon1815/.emacs.d.git"
+    :clone repo address
+    $git clone <ssh address> //do not need git init
+    $git clone "git@github.com:napoleon1815/.emacs.d.git"
+
+<FAQ>
+error 1:
+    "ERROR: Repository not found."
+    :Repository url not exist, check in .git/config url need be equal with github repo Clone or download
+error 2:
+    "error: failed to push some refs to git"
+    :no github README.md in local repo
+    $git pull --rebase origin master (pull=fetch+merge)
+    $git push -u origin master

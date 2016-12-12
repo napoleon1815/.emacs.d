@@ -60,8 +60,6 @@
 		      evil-nerd-commenter
 		      ;; for faster switch window
 		      window-numbering
-		      ;; add powerline for vim/evil buffer
-		      ;;powerline;;not good for useage
 		      ;; which key
 		      which-key
 		      ;; fast move
@@ -178,17 +176,14 @@
 ;; based on window-numbering
 (window-numbering-mode 1)
 
-;; based on powerline
-(require 'powerline)
-(powerline-default-theme)
-
 ;; set evil-leader shortkey
 ;; <M-x Customize-group evil-leader> -> Evil Leader: SPC
 (global-evil-leader-mode)
 (evil-leader/set-key
  "jp" 'avy-goto-char-2-above
  "j;" 'avy-goto-char-2-below
- "ff" 'find-file
+ "ll" 'avy-goto-line
+ "ff" 'helm-do-ag
  "fr" 'recentf-open-files
  "bb" 'switch-to-buffer
  "bk" 'kill-buffer
@@ -242,5 +237,11 @@
 ;; type 2 key, if not done, show the further key bindings 
 (which-key-mode) 
 ;need adjust weight;(setq which-key-side-window-location 'right)
+
+;; install ag
+;; for macos: $brew install the_silver_searcher
+;; for ubuntu: $apt-get install silversearcher-ag
+;; in shell: "$which ag" to get the path
+(add-to-list 'exec-path "/usr/local/bin")
 
 (provide 'init-packages)

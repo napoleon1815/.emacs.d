@@ -1,5 +1,8 @@
 ;; set font
-(set-default-font "Courier New-20")
+(when (eq system-type 'gnu/linux)
+ (set-default-font "Courier 10 Pitch-20"))
+(when (not (eq system-type 'gnu/linux))
+	    (set-default-font "Courier New-20"))
 
 ;; show line num
 (global-linum-mode t)

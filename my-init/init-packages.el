@@ -244,4 +244,7 @@
 ;; in shell: "$which ag" to get the path
 (add-to-list 'exec-path "/usr/local/bin")
 
+;; xcscope
+(add-hook 'c-mode-common-hook '(lambda() (require 'xcscope)))
+(cscope-setup)
 (provide 'init-packages)

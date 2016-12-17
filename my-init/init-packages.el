@@ -180,9 +180,10 @@
 ;; <M-x Customize-group evil-leader> -> Evil Leader: SPC
 (global-evil-leader-mode)
 (evil-leader/set-key
- "jp" 'avy-goto-char-2-above
- "j;" 'avy-goto-char-2-below
- "ll" 'avy-goto-line
+ "jj" 'avy-goto-char-2-below
+ "kk" 'avy-goto-char-2-above
+ "jl" 'avy-goto-line-below
+ "kl" 'avy-goto-line-above
  "ff" 'helm-do-ag
  "fr" 'recentf-open-files
  "bb" 'switch-to-buffer

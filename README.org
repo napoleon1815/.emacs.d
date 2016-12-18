@@ -1,0 +1,163 @@
+* install emacs
+** fow win
+*** 1) download gree edition
+download emacs-25.1-x86_64-w64-mingw32.zip from http://ftp.gnu.org/gnu/emacs/windows/ 
+*** 2) create .emacs.d
+in Options menu, click any item(such as "Save Place in Files...")
+then click "Save Options" to auto create .emacs.d
+replace .emacs.d from github
+*** 3) add environment for shell
+add emacs.exe path to system evirmonment
+in shell run terminal emacs with "emacs -nw", run GUI emacs with "emacs"
+create shortcut, fill in runemacs.exe path & --debug-init
+** fow macos
+*** 1) download gree edition
+download from https://emacsformacosx.com/builds
+** for linux
+*** 1) download source code
+    download from http://ftp.gnu.org/gnu/emacs/
+*** 2) compile source code
+**** 1) ./configure
+1) ./configure  --without-x
+   configure: error: The required function 'tputs' was not found in any library.
+   The following libraries were tried (in order):
+     libtinfo, libncurses, libterminfo, libtermcap, libcurses
+   Please try installing whichever of these libraries is most appropriate
+   for your system, together with its header files.
+   For example, a libncurses-dev(el) or similar package.
+=> $sudo apt-get install libncurses-dev
+
+2) ./configure
+   configure: error: You seem to be running X, but no X development libraries
+   were found.  You should install the relevant development files for X
+   and for the toolkit you want, such as Gtk+ or Motif.  Also make
+   sure you have development files for image handling, i.e.
+   tiff, gif, jpeg, png and xpm.
+   If you are sure you want Emacs compiled without X window support, pass
+     --without-x
+   to configure.
+=> $sudo apt-get install libgtk2.0-dev
+
+3) ./configure
+   configure: error: The following required libraries were not found:
+       libXpm libjpeg libgif/libungif libtiff
+   Maybe some development libraries/packages are missing?
+   If you don't want to link with them give
+       --with-xpm=no --with-jpeg=no --with-gif=no --with-tiff=no
+   as options to configure
+=> $sudo apt-get install libxpm-dev
+   $sudo apt-get install libjpeg62-dev
+   $sudo apt-get install libgif-dev
+   $sudo apt-get install libtiff4-dev
+**** 2) sudo make
+**** 3) sudo make install
+[a] apt-get install => /usr/bin
+[b] 1)./configure 2)make 3)make install => /usr/local/bin
+if not use "./configure prefix=<PATH>" to appoint
+default make path /usr/local/bin
+* git
+** github sign up
+sign up in https://github.com/
+** first usage in devices
+*** 1) install git
+**** for win
+install msysgit(https://github.com/git-for-windows/git/releases)
+**** for mac
+$ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+$brew update
+$sudo brew install git
+($brew install <package>/$brew uninstall <package>/$brew list [package])
+**** for ubuntu
+$sudo apt-get install git
+*** 2) set git for first usage
+modify .gitconfig file,add & directly or:
+$git config --global user.name "<your name>"
+$git config --global user.email "<your email>"
+*** 3) binding with github
+$ssh-keygen -t rsa -C "<your eamil>"
+copy all content from ~/.ssh/id_rsa.pub to github web "Settings" -> "SSH and GPG keys"
+$ssh -T git@github.com //check success or not
+** create new repo
+*** 1) create repo on github
+https://github.com/ -> New repositories(create own repo for version control)
+only fill in Repository name
+*do not* check Initialize this repository with a README
+*** 2) enter repo folder
+$mkdir <any folder name>
+$cd <previous folder>
+$git init
+*** 3) create README.org
+$touch README.org
+*** 4) create .gitignore
+$touch .gitignore
+#+BEGIN_EXAMPLE
+#.gitignore format 
+#1) # for comment
+#2) use shell regular expression, such as *.[oa] or *~
+#3) suffix "/" stand for directory
+#4) prefix "!" stand for negation
+
+#this repo only resver 4 files
+#1) .gitignore
+#2) elpa/
+#3) init.el
+#4) my-init/
+
+*~
+auto-save-list/
+snippets
+abbrev_defs
+bookmarks
+gtd.org
+recentf
+#+END_EXAMPLE
+*** 5) create first commit
+$git add .
+$git commit -m "first commit"
+*** 6) copy repo ssh address from Quick setup
+$git remote add origin "<ssh address begin with git@github>"
+*** 7) push
+$git push -u origin master
+** download a exsit repo from github
+   copy repo ssh address from "Clone or download"
+   $git clone "git@github.com:napoleon1815/.emacs.d.git" //do not need git init
+** upload change to github
+*** 1) untracked status
+      $git status               //check status & untracked files
+      $git diff                 //diff untracked files
+*** 2) stage status
+      $git diff --cached        //diff stage files
+      $git checkout -- .        //roll back untracked files
+      $git add                  //add change to stage
+*** 3) commit status
+      $git commit -m "MESSAGE"  //commit stage content to repo
+      $git log                  //check git commit log
+      $git reset --hard         //roll back *tracked files* to one commit in local repo
+      $git reflog               //get *tracked files* to latest commit in local repo
+      $git clean -xf            //delete all untracked files including .gitignore
+*** 4) git push
+      after git commit, then run
+      $git push (may be equal with $git push -u origin master)
+** error FAQ
+*** error 1
+  "ERROR: Repository not found."
+  [A] Repository url not exist
+      modify .git/config url, it need be equal with github repo Clone or download
+*** error 2
+  "error: failed to push some refs to git"
+  [A] no github README.md in local repo
+      $git pull --rebase origin master //pull=fetch+merge) 
+      $git push -u origin master
+* cscope
+** for macos
+$brew install ag
+** for linux
+$apt-get install cscope
+only ubuntu apt-get has cscope-indexer in /usr/local/bin 
+cscope usage: cscope-indexer -r
+* ag
+** for macos
+$brew install the_silver_search
+** for linux
+$apt-get install silversearcher-ag
+

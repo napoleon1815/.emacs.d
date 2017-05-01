@@ -48,7 +48,7 @@ download from https://emacsformacosx.com/builds
 => $sudo apt-get install libxpm-dev
    $sudo apt-get install libjpeg62-dev
    $sudo apt-get install libgif-dev
-   $sudo apt-get install libtiff4-dev
+   $sudo apt-get install libtiff5-dev
 **** 2) sudo make
 **** 3) sudo make install
 [a] apt-get install => /usr/bin
@@ -75,8 +75,8 @@ $git config --global user.name "<your name>"
 $git config --global user.email "<your email>"
 *** 3) binding with github
 $ssh-keygen -t rsa -C "<your eamil>"
-copy all content from ~/.ssh/id_rsa.pub to github web "Settings" -> "SSH and GPG keys"
-$ssh -T git@github.com //check success or not
+//copy all content from ~/.ssh/id_rsa.pub to github web "Settings" -> "SSH and GPG keys"
+$ssh -T git@github.com //make connect successfully
 ** create new repo
 *** 1) create repo on github
 https://github.com/ -> New repositories(create own repo for version control)

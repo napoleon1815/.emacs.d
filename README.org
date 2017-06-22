@@ -139,7 +139,10 @@ $git push -u origin master\\
       $git clean -xf            //delete all untracked files including .gitignore\\
 *** 4) git push
       after git commit, then run\\
-      $git push (may be equal with $git push -u origin master)\\
+      $git push (may be equal with $git push -u origin master)\
+** back to one version
+   $git log //check commit id
+   $git reset --hard <commit id>
 ** error FAQ
 *** error 1
   "ERROR: Repository not found."\\

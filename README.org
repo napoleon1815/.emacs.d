@@ -73,6 +73,7 @@ $sudo apt-get install git\\
 modify .gitconfig file,add & directly or:\\
 $git config --global user.name "<your name>"\\
 $git config --global user.email "<your email>"\\
+$git config --global core.autocrlf false\\
 *** 3) binding with github
 $ssh-keygen -t rsa -C "<your eamil>"\\
 //copy all content from ~/.ssh/id_rsa.pub to github web "Settings" -> "SSH and GPG keys"\\
@@ -154,7 +155,7 @@ $brew install ag\\
 ** for linux
 $apt-get install cscope\\
 only ubuntu apt-get has cscope-indexer in /usr/local/bin\\
-cscope usage: cscope-indexer -r\\
+cscope usage: cscope-indexer -r
 * ag
 ** for macos
 $brew install the_silver_search\\

@@ -75,9 +75,10 @@ $git config --global user.name "<your name>"\\
 $git config --global user.email "<your email>"\\
 $git config --global core.autocrlf false\\
 *** 3) binding with github
-$ssh-keygen -t rsa -C "<your eamil>"\\
-//copy all content from ~/.ssh/id_rsa.pub to github web "Settings" -> "SSH and GPG keys"\\
-$ssh -T git@github.com //make connect successfully\\
+$ssh-keygen -t rsa -C "<your eamil>"
+//copy all content from ~/.ssh/id_rsa.pub to:
+//github web "Settings" -> "SSH and GPG keys"
+$ssh -T git@github.com //then enter 'yes' to make connect successfully
 ** create new repo
 *** 1) create repo on github
 https://github.com/ -> New repositories(create own repo for version control)\\

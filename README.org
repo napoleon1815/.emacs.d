@@ -141,8 +141,9 @@ $git push -u origin master\\
       after git commit, then run\\
       $git push (may be equal with $git push -u origin master)\
 ** back to one version
-   $git log //check commit id
-   $git reset --hard <commit id>
+   $git log //check commit id \\
+   $git reset --hard <commit id> \\
+   $git push -f -u origin master
 ** error FAQ
 *** error 1
   "ERROR: Repository not found."\\
